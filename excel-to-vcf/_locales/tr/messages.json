@@ -1,0 +1,29 @@
+{
+  "app_title": {
+    "message": "VCF Oluştur"
+  },
+  "app_description": {
+    "message": "VCF dosyalarını kolayca oluşturun. Tabloya girilen kişi bilgilerini .vcf formatına çevirip indirin."
+  },
+  "note_text": {
+    "message": "Aşağıdaki tabloya verileri girin veya Excel'den yapıştırın."
+  },
+  "add_row": {
+    "message": "Satır Ekle"
+  },
+  "clear_table": {
+    "message": "Tümünü Temizle"
+  },
+  "expand": {
+    "message": "Genişlet"
+  },
+  "shrink": {
+    "message": "Daralt"
+  },
+  "generate": {
+    "message": "VCF Oluştur"
+  },
+  "file_name": {
+    "message": "Dosya adı"
+  }
+}

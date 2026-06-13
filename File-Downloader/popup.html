@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toplu Dosya İndirici</title>
+  <script src="popup.js" defer></script>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      font-size: 14px;
+      background: #f4f7fa;
+      color: #333;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 10px;
+      min-height: 100vh;
+
+
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    header img {
+      height: 32px;
+    }
+
+    header h2 {
+      font-size: 18px;
+      margin: 0;
+      color: #004080;
+      font-weight: 600;
+    }
+
+    input[type="text"] {
+      padding: 6px;
+      font-size: 14px;
+      width: 100%;
+      max-width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 5px 10px;
+      margin-top: 10px;
+      margin-right: 2px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
+
+    #addRow { background-color: #17a2b8; color: white; }
+    #clearTable { background-color: #ffc107; color: black; }
+    #downloadBtn { background-color: #28a745; color: white; }
+    #cancelBtn { background-color: #8e2f2f; color: white; }
+
+    table {
+      border-collapse: separate;
+      width: 100%;
+      margin-top: 15px;
+      background-color: white;
+      border-spacing: 4px;
+    }
+
+    th {
+      background-color: #004080;
+      color: white;
+      font-weight: normal;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 4px;
+      min-width: 80px;
+      font-size: 12px;
+      text-align: left;
+      border-radius: 4px;
+    }
+
+    td {
+      background-color: #fdfdfd;
+    }
+
+    td:focus {
+      outline: 2px solid #007bff;
+      background-color: #e6f0ff;
+    }
+
+    #result {
+      margin-top: 10px;
+      color: green;
+      font-weight: bold;
+    }
+    #progressBar {
+      transition: width 0.3s ease-in-out;
+    }
+  </style>
+  <style>
+    body.light { background: #f4f7fa; color: #333; }
+    body.dark { background: #1e1e1e; color: #ddd; }
+
+    body.dark th { background-color: #333; color: #eee; }
+    body.dark td { background-color: #2b2b2b; color: #ddd; }
+    body.dark input, body.dark button {
+      background-color: #444;
+      color: white;
+      border: 1px solid #555;
+    }
+
+    button { cursor: pointer; }
+
+
+  </style>
+</head>
+<body>
+<header style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px;">
+  <!-- Sol taraf: Logo ve Başlık -->
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img src="images/icon-128.png" alt="Logo" style="height: 40px;">
+    <h2 class="i18n" data-msg="app_title" style="margin: 5px 0 0 0; text-align: center;">Toplu Dosya İndirici</h2>
+  </div>
+
+  <!-- Sağ taraf: Butonlar -->
+
+  <div>
+    <button id="langSwitch" class="i18n" data-msg="langSwitch" title="Switch Language">🌐 TR</button>
+    <button id="themeToggle" title="Toggle Theme">🌙</button>
+    <br>
+    <button id="FilePathBtn" title="Open Downloads Page">📥</button>
+    <br>
+    <div style="position: relative; display: inline-block;">
+      <button id="contactBtn" class="i18n" data-msg="contactBtn" title="Contact">📩 İletişim</button>
+      <div id="contactInfo" style="
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 5px;
+        padding: 8px 12px;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 12px;
+        color: #333;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        white-space: nowrap;
+        z-index: 10;
+      ">
+        h.ocak0101@gmail.com
+      </div>
+    </div>
+
+  </div>
+</header>
+<br>
+  <p class="i18n" data-msg="note_text" style="margin-top: -10px; font-size: 10px; color: #666;">
+  Kopyala - Yapıştır işlemi kullanabilirsiniz. <br>
+  İndir butonuna bastıktan sonra indirmelerin tamamlanmasını bekleyin.
+  </p>
+  <input type="text" id="baseFolder" placeholder="ANA KLASÖR (Örnek: İndirmeler)" class="i18n" data-msg="baseFolder" />
+<br>
+<button id="addRow" class="i18n" data-msg="addRow">Satır Ekle</button>
+<button id="clearTable" class="i18n" data-msg="clearTable">Tümünü Temizle</button>
+<button id="downloadBtn" class="i18n" data-msg="downloadBtn">İndir</button>
+<br>
+<button id="cancelBtn" class="i18n" data-msg="cancelBtn">❌ İptal Et</button>
+<br>
+
+<div id="statusMessage" style="margin-bottom: 8px; font-weight: bold; color: #444;"></div>
+
+
+<div id="downloadStatus" style="margin-top: 5px; font-size: 13px; color: #555;">
+  <div><span id="downloadLabel" class="i18n" data-msg="downloadLabel">İndirilen Dosyalar:</span> <span id="downloadedCount">0</span> / <span id="totalCount">0</span></div>
+</div>
+
+  <p id="result"></p>
+
+  <div id="progressContainer">
+    <div id="progressBar" style="width: 0%; height: 100%; background-color: #4CAF50; text-align: center; line-height: 20px; color: white; border-radius: 5px;">0%</div>
+  </div>
+  <div style="overflow-x: auto;">
+    <table id="dataTable">
+      <thead>
+          <tr>
+            <th>No</th>
+            <th class="i18n" data-msg="col_1">Klasör</th>
+            <th class="i18n" data-msg="col_2">Dosya Adı</th>
+            <th class="i18n" data-msg="col_3">Link</th>
+          </tr>
+      </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+            <td contenteditable="true"></td>
+          </tr>
+        </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

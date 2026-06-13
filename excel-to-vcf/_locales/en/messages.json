@@ -1,0 +1,29 @@
+{
+  "app_title": {
+    "message": "Generate VCF"
+  },
+  "app_description": {
+    "message": "Easily create VCF files. Convert contact table data into .vcf format and download instantly."
+  },
+  "note_text": {
+    "message": "Enter data in the table or paste from Excel below."
+  },
+  "add_row": {
+    "message": "Add Row"
+  },
+  "clear_table": {
+    "message": "Clear All"
+  },
+  "expand": {
+    "message": "Expand"
+  },
+  "shrink": {
+    "message": "Shrink"
+  },
+  "generate": {
+    "message": "Generate VCF"
+  },
+  "file_name": {
+    "message": "File Name"
+  }
+}
