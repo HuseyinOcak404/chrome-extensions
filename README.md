@@ -27,9 +27,9 @@ Bu eklentilerin kaynak kodlarını kendi bilgisayarınızda test etmek veya üze
 
 Bu eklentilerin yayıncısı ben olsam da, bazı projeler ekip arkadaşlarımın işbirliği ve teknik katkıları olmadan hayata geçemezdi. Sürece değer katan geliştirici arkadaşlarıma teşekkür ederim:
 
-* **[Arkadaşın Adı veya GitHub Profili]** - [Hangi eklenti] projesinde ortak geliştirici.
-* **[Arkadaşın Adı veya GitHub Profili]** - [Hangi eklenti] projesinde [Önyüz/Test/Fikir vs.] katkısı.
+* **[Hacer Cansevdi](https://github.com/hacer00)**
+* **[Hüsamettin Işıktaş](https://github.com/husamettyn/)**
 
 ## 📄 Lisans
 
-Bu proje [MIT Lisansı](LICENSE) altında paylaşılmaktadır. Detaylar için `LICENSE` dosyasına göz atabilirsiniz.
+Bu proje [MIT Lisansı](https://github.com/HuseyinOcak404/chrome-extensions/blob/main/LICENSE) altında paylaşılmaktadır. Detaylar için `LICENSE` dosyasına göz atabilirsiniz.
