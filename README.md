@@ -18,7 +18,7 @@ Bu repoda yer alan eklentilerin listesini aşağıda bulabilirsiniz. Eklentileri
 
 Bu eklentilerin kaynak kodlarını kendi bilgisayarınızda test etmek veya üzerinde denemeler yapmak isterseniz şu adımları izleyebilirsiniz:
 
-1. Bu repoyu bilgisayarınıza klonlayın: `git clone https://github.com/kullanici-adiniz/repo-adi.git`
+1. Bu repoyu bilgisayarınıza klonlayın: `git clone https://github.com/HuseyinOcak404/chrome-extensions.git`
 2. Google Chrome'u açın ve adres çubuğuna `chrome://extensions/` yazın.
 3. Sağ üst köşede bulunan **Geliştirici modu** (Developer mode) seçeneğini aktif hale getirin.
 4. Sol üstteki **Paketlenmemiş öğe yükle** (Load unpacked) butonuna tıklayın ve repodaki ilgili eklenti klasörünü seçin.
